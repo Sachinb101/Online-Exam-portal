@@ -1,0 +1,39 @@
+server:
+  port: 8082
+
+eureka:
+  instance:
+   hostname: localhost
+
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      routes:
+        - id: Exam-Service
+          uri: http://localhost:9001/
+          predicates:
+            - Path=/api/v1/**
+
+        - id: ExamQuiz-Services
+          uri: http://localhost:9002/
+          predicates:
+            - Path=/api/v1/**
+
+        - id: Question-Service
+          uri: http://localhost:9005/
+          predicates:
+            - Path=/api/v1/**
+            
+        - id: Test-Service
+          uri: http://localhost:9003/
+          predicates:
+           - Path=/api/v1/**
+
+        - id: User-Service
+          uri: http://localhost:9004/
+          predicates:
+            - Path=/api/v1/**
+
+
